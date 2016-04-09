@@ -1,0 +1,28 @@
+
+# Naive Bayes on Iris Dataset
+# Predictors 4
+# Classes 3
+
+install.packages("klaR")
+install.packages("caret")
+
+library("klaR")
+library("caret")
+
+x = iris[,-5]
+y = iris$Species
+
+model = train(x,y,'nb',trControl=trainControl(method='cv',number=10))
+
+model
+
+# Prediction
+predict(model$finalModel,x)
+
+# Confusion Matrix
+table(predict(model$finalModel,x)$class,y)
+
+# Sensitivity 
+TP / (Tp + FP)
+
+
